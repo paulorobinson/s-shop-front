@@ -1,8 +1,11 @@
+import { useEffect, useRef } from 'react';
 import Location from '../../../components/Location';
 import { useApplication } from '../../../context/Application';
 import { Container, ContainerForm, ContainerTable } from './styles';
 
 const Products = () => {
+  const inputNameRef = useRef(null);
+
   const { addProduct, removeProduct, products } = useApplication();
 
   const handleSubmit = (event) => {
@@ -23,7 +26,12 @@ const Products = () => {
     }
     addProduct(dataProduct);
     event.target.reset();
+    inputNameRef.current.focus();
   };
+
+  useEffect(() => {
+    inputNameRef.current.focus();
+  }, []);
 
   return (
     <Container>
@@ -31,7 +39,12 @@ const Products = () => {
       <ContainerForm onSubmit={(e) => handleSubmit(e)}>
         <div>
           <p>Produto</p>
-          <input type="text" name="name" placeholder="Nome" />
+          <input
+            type="text"
+            name="name"
+            ref={inputNameRef}
+            placeholder="Nome"
+          />
         </div>
         <div>
           <p>Descrição</p>
