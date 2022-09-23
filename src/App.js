@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
+import { ApplicationProvider } from './context/Application';
+
 import GlobalStyle from './styles/global';
 
 import Admin from './pages/Admin';
@@ -12,7 +14,7 @@ import Cart from './pages/Shopper/Cart';
 
 const App = () => {
   return (
-    <>
+    <ApplicationProvider>
       <GlobalStyle />
       <Router>
         <Routes>
@@ -29,7 +31,7 @@ const App = () => {
           <Route element={<h1>Not Found</h1>} path="*" />
         </Routes>
       </Router>
-    </>
+    </ApplicationProvider>
   );
 };
 
