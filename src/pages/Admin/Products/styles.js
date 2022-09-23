@@ -8,21 +8,13 @@ export const Container = styled.div`
   width: 100%;
 `;
 
-export const Location = styled.p`
-  font-size: 1.4rem;
-
-  span {
-    color: ${COLORS.BLUE};
-  }
-`;
-
 export const ContainerForm = styled.form`
   display: grid;
   grid-template-columns: 1fr 2fr 1fr auto;
 
   grid-gap: 1rem;
 
-  padding: 2rem 0;
+  padding-bottom: 2rem;
 
   p {
     font-size: 1.2rem;

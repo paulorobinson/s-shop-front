@@ -1,11 +1,10 @@
-import { Container, ContainerForm, ContainerTable, Location } from './styles';
+import Location from '../../../components/Location';
+import { Container, ContainerForm, ContainerTable } from './styles';
 
 const Products = () => {
   return (
     <Container>
-      <Location>
-        Admin &gt; <span> Produtos</span>
-      </Location>
+      <Location location={['Admin', 'Produtos']} />
       <ContainerForm>
         <div>
           <p>Produto</p>

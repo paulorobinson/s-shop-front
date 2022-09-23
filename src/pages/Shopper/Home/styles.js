@@ -6,11 +6,26 @@ export const Container = styled.div`
   flex-direction: column;
   padding: 2rem;
   width: 100%;
+
+  input {
+    height: 2rem;
+
+    padding-left: 0.25rem;
+  }
+`;
+
+export const ContainerForm = styled.form``;
+
+export const ContainerSearch = styled.div`
+  display: flex;
+  justify-content: flex-end;
+
+  input {
+    margin-bottom: 2rem;
+  }
 `;
 
 export const ContainerTable = styled.div`
-  padding-bottom: 2rem;
-
   table {
     width: 100%;
     border-collapse: collapse;
@@ -36,5 +51,15 @@ export const ContainerTable = styled.div`
   td {
     font-size: 1rem;
     padding: 1rem;
+  }
+
+  button {
+    height: 2rem;
+    padding: 0 0.5rem;
+
+    font-size: 1.2rem;
+  }
+  button:hover {
+    cursor: pointer;
   }
 `;

@@ -1,11 +1,10 @@
-import { Container, ContainerTable, Location } from './styles';
+import Location from '../../../components/Location';
+import { Container, ContainerTable } from './styles';
 
 const Shopping = () => {
   return (
     <Container>
-      <Location>
-        Admin &gt; <span> Compras</span>
-      </Location>
+      <Location location={['Admin', 'Compras']} />
       <ContainerTable>
         <table>
           <thead>

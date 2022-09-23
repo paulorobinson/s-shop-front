@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Sidebar = styled.aside`
-  width: 10rem;
+  min-width: 10rem;
 
   display: flex;
   flex-direction: column;

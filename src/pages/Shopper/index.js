@@ -10,8 +10,8 @@ const Shopper = () => {
       <Header />
       <Wrapper>
         <Sidebar>
-          <Link to="/">Produtos</Link>
-          <Link to="/cart">Compras</Link>
+          <Link to="/">Home</Link>
+          <Link to="/cart">Cesta</Link>
         </Sidebar>
         <Outlet />
       </Wrapper>
