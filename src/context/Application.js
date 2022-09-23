@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useRef, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 const KEY_NAME_PRODUCTS = '@s-shop-products';
@@ -9,6 +9,13 @@ const ApplicationProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
 
   const addProduct = (product) => {
+    const alreadyProduct = products.some(({ name }) => product.name === name);
+
+    if (alreadyProduct) {
+      alert(`Already product ${product.name}.`);
+      return false;
+    }
+
     const dataProducts = [...products, { ...product, id: uuidv4() }];
     setProducts(dataProducts);
     persistLocalStorage(KEY_NAME_PRODUCTS, dataProducts);
@@ -31,7 +38,6 @@ const ApplicationProvider = ({ children }) => {
 
   useEffect(() => {
     const dataLocalStorage = getDataFromLocalStorage(KEY_NAME_PRODUCTS);
-    console.log(dataLocalStorage);
     if (dataLocalStorage !== null) {
       if (dataLocalStorage?.length !== 0) {
         setProducts(dataLocalStorage);
