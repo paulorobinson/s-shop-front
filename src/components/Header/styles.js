@@ -6,9 +6,10 @@ export const Container = styled.header`
   justify-content: center;
   align-items: center;
 
+  height: 5rem;
+
   background-color: ${COLORS.BLUE};
   color: ${COLORS.BG};
   font-size: 2rem;
   font-weight: bold;
-  padding: 1rem 0;
 `;
