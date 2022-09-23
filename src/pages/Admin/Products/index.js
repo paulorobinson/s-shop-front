@@ -4,7 +4,7 @@ const Products = () => {
   return (
     <Container>
       <Location>
-        Admin &gt; <span> Products</span>
+        Admin &gt; <span> Produtos</span>
       </Location>
       <ContainerForm>
         <div>
