@@ -1,4 +1,6 @@
 import Location from '../../../components/Location';
+import { useApplication } from '../../../context/Application';
+
 import {
   Container,
   ContainerForm,
@@ -7,13 +9,15 @@ import {
 } from './styles';
 
 const Home = () => {
+  const { products } = useApplication();
+
   return (
     <Container>
       <Location location={['Home']} />
 
       <ContainerForm>
         <ContainerSearch>
-          <input type="text" placeholder="Buscar" />
+          <input type="text" placeholder="Buscar por produto" />
         </ContainerSearch>
         <ContainerTable>
           <table>
@@ -26,36 +30,18 @@ const Home = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Produto 001</td>
-                <td>Maria</td>
-                <td>
-                  <input type="text" />
-                </td>
-                <td>
-                  <button>Adicionar</button>
-                </td>
-              </tr>
-              <tr>
-                <td>Produto 001</td>
-                <td>Maria</td>
-                <td>
-                  <input type="text" />
-                </td>
-                <td>
-                  <button>Adicionar</button>
-                </td>
-              </tr>
-              <tr>
-                <td>Produto 001</td>
-                <td>Maria</td>
-                <td>
-                  <input type="text" />
-                </td>
-                <td>
-                  <button>Adicionar</button>
-                </td>
-              </tr>
+              {products.map((product) => (
+                <tr key={product.id}>
+                  <td>{product.name}</td>
+                  <td>{product.description}</td>
+                  <td>
+                    <input type="number" placeholder="Qtd" />
+                  </td>
+                  <td>
+                    <button>Adicionar</button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </ContainerTable>
