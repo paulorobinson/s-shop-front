@@ -14,7 +14,7 @@ export const Container = styled.div`
   }
 `;
 
-export const ContainerForm = styled.form``;
+export const ContainerForm = styled.div``;
 
 export const ContainerSearch = styled.div`
   display: flex;
@@ -56,6 +56,7 @@ export const ContainerTable = styled.div`
   button {
     height: 2rem;
     padding: 0 0.5rem;
+    width: 7rem;
 
     font-size: 1.2rem;
   }

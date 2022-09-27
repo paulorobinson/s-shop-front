@@ -1,30 +1,76 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-const KEY_NAME_PRODUCTS = '@s-shop-products';
+import { api } from '../services/api';
+
+const KEY_NAME_CURRENT_CART = '@s-shop-current-cart';
 
 const ApplicationContext = createContext();
 
 const ApplicationProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
+  const [currentCart, setCurrentCart] = useState([]);
 
-  const addProduct = (product) => {
-    const alreadyProduct = products.some(({ name }) => product.name === name);
+  const addProduct = async (product) => {
+    const alreadyProduct = await api
+      .get(`/products/?name=${product.name}`)
+      .then(({ data }) => data)
+      .catch((error) => console.log(error));
 
-    if (alreadyProduct) {
+    if (alreadyProduct.length > 0) {
       alert(`Already product ${product.name}.`);
       return false;
     }
 
-    const dataProducts = [...products, { ...product, id: uuidv4() }];
-    setProducts(dataProducts);
-    persistLocalStorage(KEY_NAME_PRODUCTS, dataProducts);
+    const dataProduct = { ...product, id: uuidv4() };
+
+    await api
+      .post('/products', dataProduct)
+      .then(({ data }) => setProducts([...products, data]))
+      .catch((error) => console.log(error));
   };
 
-  const removeProduct = (productId) => {
-    const filteredProducts = products.filter(({ id }) => id !== productId);
-    setProducts(filteredProducts);
-    persistLocalStorage(KEY_NAME_PRODUCTS, filteredProducts);
+  const removeProduct = async (productId) => {
+    const alreadyProduct = await api
+      .get(`/products/?id=${productId}`)
+      .then(({ data }) => data)
+      .catch((error) => console.log(error));
+
+    if (alreadyProduct.length === 0) {
+      alert('Product not found');
+      return;
+    }
+
+    await api
+      .delete(`/products/${productId}`)
+      .then(({ status }) => {
+        if (status === 200) {
+          const filteredProducts = products.filter(
+            (product) => productId !== product.id
+          );
+          setProducts(filteredProducts);
+        }
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const addProductFromCurrentCart = (productId, quantity) => {
+    const qty = Number(quantity);
+    if (isNaN(qty) || qty === 0) {
+      alert('Please select a quantity to add to your cart');
+      return false;
+    }
+    const data = [...currentCart, { productId, quantity }];
+    setCurrentCart(data);
+    persistLocalStorage(KEY_NAME_CURRENT_CART, data);
+  };
+
+  const removeProductFromCurrentCart = (productId) => {
+    const filteredCurrentCart = currentCart.filter(
+      (product) => product.productId !== productId
+    );
+    setCurrentCart(filteredCurrentCart);
+    persistLocalStorage(KEY_NAME_CURRENT_CART, filteredCurrentCart);
   };
 
   const persistLocalStorage = (keyName, data) => {
@@ -37,17 +83,34 @@ const ApplicationProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const dataLocalStorage = getDataFromLocalStorage(KEY_NAME_PRODUCTS);
-    if (dataLocalStorage !== null) {
-      if (dataLocalStorage?.length !== 0) {
-        setProducts(dataLocalStorage);
+    api
+      .get('/products')
+      .then(({ data }) => setProducts(data))
+      .catch((error) => console.log(error));
+  }, []);
+
+  useEffect(() => {
+    const dataLocalStorageCurrentCart = getDataFromLocalStorage(
+      KEY_NAME_CURRENT_CART
+    );
+
+    if (dataLocalStorageCurrentCart !== null) {
+      if (dataLocalStorageCurrentCart?.length !== 0) {
+        setCurrentCart(dataLocalStorageCurrentCart);
       }
     }
   }, []);
 
   return (
     <ApplicationContext.Provider
-      value={{ addProduct, removeProduct, products }}
+      value={{
+        products,
+        addProduct,
+        removeProduct,
+        currentCart,
+        addProductFromCurrentCart,
+        removeProductFromCurrentCart,
+      }}
     >
       {children}
     </ApplicationContext.Provider>
