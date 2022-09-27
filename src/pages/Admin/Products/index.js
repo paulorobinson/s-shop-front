@@ -52,7 +52,7 @@ const Products = () => {
         </div>
         <div>
           <p>Preço</p>
-          <input type="text" name="price" placeholder="R$ 0,00" />
+          <input type="number" name="price" placeholder="R$ 0,00" />
         </div>
         <div>
           <p>&nbsp;</p>

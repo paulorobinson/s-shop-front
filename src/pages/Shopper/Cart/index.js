@@ -1,4 +1,7 @@
+import { useEffect } from 'react';
+import { useState } from 'react';
 import Location from '../../../components/Location';
+import { useApplication } from '../../../context/Application';
 import {
   Container,
   ContainerBuy,
@@ -9,6 +12,32 @@ import {
 } from './styles';
 
 const Cart = () => {
+  const { currentCart, products } = useApplication();
+
+  const [productsDetailsCurrentCart, setProductsDetailsCurrentCart] = useState(
+    []
+  );
+
+  const totalPriceAllProducts = productsDetailsCurrentCart.reduce(
+    (prev, curr) => prev + curr.totalPrice,
+    0
+  );
+
+  console.log(totalPriceAllProducts);
+
+  useEffect(() => {
+    const joinProductsAndCart = currentCart.map((productCart) => ({
+      ...productCart,
+      ...products.find((product) => product.id === productCart.productId),
+    }));
+
+    const changedProductDetails = joinProductsAndCart.map((product) => {
+      return { ...product, totalPrice: product.quantity * product.price };
+    });
+
+    setProductsDetailsCurrentCart(changedProductDetails);
+  }, [currentCart, products]);
+
   return (
     <Container>
       <Location location={['Cesta']} />
@@ -25,24 +54,26 @@ const Cart = () => {
                 <th>Qtd</th>
                 <th>Produto</th>
                 <th>Descrição</th>
-                <th>Valor</th>
+                <th>Valor Total</th>
                 <th> </th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>3</td>
-                <td>Produto 001</td>
-                <td>Pão teste</td>
-                <td>R$ 13,00</td>
-                <td>
-                  <button>X</button>
-                </td>
-              </tr>
+              {productsDetailsCurrentCart.map((product) => (
+                <tr key={product.productId}>
+                  <td>{product.quantity}</td>
+                  <td>{product.name}</td>
+                  <td>{product.description}</td>
+                  <td>{product.totalPrice || ''}</td>
+                  <td>
+                    <button>X</button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </ContainerTable>
-        <ContainerTotal>Total: R$ 99,00</ContainerTotal>
+        <ContainerTotal>Total: R$ {totalPriceAllProducts || ''}</ContainerTotal>
         <ContainerBuy>
           <button type="submit">Finalizar Compra</button>
         </ContainerBuy>
