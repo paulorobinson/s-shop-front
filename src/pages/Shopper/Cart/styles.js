@@ -8,7 +8,7 @@ export const Container = styled.div`
   width: 100%;
 `;
 
-export const ContainerForm = styled.form`
+export const ContainerForm = styled.div`
   button {
     height: 2rem;
     padding: 0 0.5rem;

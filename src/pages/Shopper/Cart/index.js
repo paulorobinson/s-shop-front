@@ -12,7 +12,10 @@ import {
 } from './styles';
 
 const Cart = () => {
-  const { currentCart, products } = useApplication();
+  const { currentCart, products, removeProductFromCurrentCart } =
+    useApplication();
+
+  const [userField, setUserField] = useState('');
 
   const [productsDetailsCurrentCart, setProductsDetailsCurrentCart] = useState(
     []
@@ -22,8 +25,6 @@ const Cart = () => {
     (prev, curr) => prev + curr.totalPrice,
     0
   );
-
-  console.log(totalPriceAllProducts);
 
   useEffect(() => {
     const joinProductsAndCart = currentCart.map((productCart) => ({
@@ -45,38 +46,57 @@ const Cart = () => {
       <ContainerForm>
         <ContainerName>
           <p>Nome: Paulo Robinson Giaciani</p>
-          <input type="text" placeholder="Nome" />
+          <input
+            type="text"
+            placeholder="Nome"
+            value={userField}
+            onChange={(e) => setUserField(e.target.value)}
+          />
         </ContainerName>
-        <ContainerTable>
-          <table>
-            <thead>
-              <tr>
-                <th>Qtd</th>
-                <th>Produto</th>
-                <th>Descrição</th>
-                <th>Valor Total</th>
-                <th> </th>
-              </tr>
-            </thead>
-            <tbody>
-              {productsDetailsCurrentCart.map((product) => (
-                <tr key={product.productId}>
-                  <td>{product.quantity}</td>
-                  <td>{product.name}</td>
-                  <td>{product.description}</td>
-                  <td>{product.totalPrice || ''}</td>
-                  <td>
-                    <button>X</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </ContainerTable>
-        <ContainerTotal>Total: R$ {totalPriceAllProducts || ''}</ContainerTotal>
-        <ContainerBuy>
-          <button type="submit">Finalizar Compra</button>
-        </ContainerBuy>
+        {currentCart.length !== 0 && (
+          <>
+            <ContainerTable>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Qtd</th>
+                    <th>Produto</th>
+                    <th>Descrição</th>
+                    <th>Valor Total</th>
+                    <th> </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {productsDetailsCurrentCart.map((product) => (
+                    <tr key={product.productId}>
+                      <td>{product.quantity}</td>
+                      <td>{product.name}</td>
+                      <td>{product.description}</td>
+                      <td>{product.totalPrice || ''}</td>
+                      <td>
+                        <button
+                          onClick={() =>
+                            removeProductFromCurrentCart(product.productId)
+                          }
+                        >
+                          X
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </ContainerTable>
+            <ContainerTotal>
+              Total: R$ {totalPriceAllProducts || ''}
+            </ContainerTotal>
+          </>
+        )}
+        {userField && currentCart.length !== 0 && (
+          <ContainerBuy>
+            <button>Finalizar Compra</button>
+          </ContainerBuy>
+        )}
       </ContainerForm>
     </Container>
   );
