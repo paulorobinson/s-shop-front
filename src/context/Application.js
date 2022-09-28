@@ -18,7 +18,7 @@ const ApplicationProvider = ({ children }) => {
       .catch((error) => console.log(error));
 
     if (alreadyProduct.length > 0) {
-      alert(`Already product ${product.name}.`);
+      alert(`Já existe o produto ${product.name}.`);
       return false;
     }
 
@@ -37,7 +37,7 @@ const ApplicationProvider = ({ children }) => {
       .catch((error) => console.log(error));
 
     if (alreadyProduct.length === 0) {
-      alert('Product not found');
+      alert('Produto não encontrado');
       return;
     }
 
@@ -57,7 +57,7 @@ const ApplicationProvider = ({ children }) => {
   const addProductFromCurrentCart = (productId, quantity) => {
     const qty = Number(quantity);
     if (isNaN(qty) || qty === 0) {
-      alert('Please select a quantity to add to your cart');
+      alert('Por favor, digite uma quantidade do produto');
       return false;
     }
     const data = [...currentCart, { productId, quantity }];
@@ -73,6 +73,18 @@ const ApplicationProvider = ({ children }) => {
     persistLocalStorage(KEY_NAME_CURRENT_CART, filteredCurrentCart);
   };
 
+  const addShopping = async (shoppingData) => {
+    const data = { ...shoppingData, id: uuidv4() };
+    await api
+      .post('/shopping', data)
+      .then(() => {
+        alert('Sucesso');
+        removeDataFromLocalStorage(KEY_NAME_CURRENT_CART);
+        window.location.replace('./');
+      })
+      .catch((error) => console.log(error));
+  };
+
   const persistLocalStorage = (keyName, data) => {
     localStorage.setItem(keyName, JSON.stringify(data));
   };
@@ -80,6 +92,10 @@ const ApplicationProvider = ({ children }) => {
   const getDataFromLocalStorage = (keyName) => {
     const dataLocalStorage = localStorage.getItem(keyName);
     return JSON.parse(dataLocalStorage);
+  };
+
+  const removeDataFromLocalStorage = (keyName) => {
+    localStorage.removeItem(keyName);
   };
 
   useEffect(() => {
@@ -110,6 +126,7 @@ const ApplicationProvider = ({ children }) => {
         currentCart,
         addProductFromCurrentCart,
         removeProductFromCurrentCart,
+        addShopping,
       }}
     >
       {children}

@@ -16,7 +16,7 @@ const Products = () => {
 
     for (let [name, value] of formData) {
       if (value === '') {
-        alert(`Please enter a value`);
+        alert(`Por favor, entre com um valor`);
         return false;
       }
       dataProduct = {

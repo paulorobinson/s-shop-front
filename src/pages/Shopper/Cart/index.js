@@ -12,7 +12,7 @@ import {
 } from './styles';
 
 const Cart = () => {
-  const { currentCart, products, removeProductFromCurrentCart } =
+  const { currentCart, products, removeProductFromCurrentCart, addShopping } =
     useApplication();
 
   const [userField, setUserField] = useState('');
@@ -22,9 +22,26 @@ const Cart = () => {
   );
 
   const totalPriceAllProducts = productsDetailsCurrentCart.reduce(
-    (prev, curr) => prev + curr.totalPrice,
+    (prev, curr) => prev + Number(curr.totalPrice),
     0
   );
+
+  const totalQuantityAllProducts = productsDetailsCurrentCart.reduce(
+    (prev, curr) => prev + Number(curr.quantity),
+    0
+  );
+
+  const handleSendShopping = () => {
+    const name = userField;
+    const quantity = totalQuantityAllProducts;
+    const total = totalPriceAllProducts;
+
+    if (!name || !total || !quantity) {
+      alert('Erro: Inválido nome ou quantidade');
+      return;
+    }
+    addShopping({ name, quantity, total });
+  };
 
   useEffect(() => {
     const joinProductsAndCart = currentCart.map((productCart) => ({
@@ -45,7 +62,7 @@ const Cart = () => {
 
       <ContainerForm>
         <ContainerName>
-          <p>Nome: Paulo Robinson Giaciani</p>
+          <p>Nome: {userField}</p>
           <input
             type="text"
             placeholder="Nome"
@@ -62,7 +79,8 @@ const Cart = () => {
                     <th>Qtd</th>
                     <th>Produto</th>
                     <th>Descrição</th>
-                    <th>Valor Total</th>
+                    <th>Preço</th>
+                    <th>Total</th>
                     <th> </th>
                   </tr>
                 </thead>
@@ -72,6 +90,7 @@ const Cart = () => {
                       <td>{product.quantity}</td>
                       <td>{product.name}</td>
                       <td>{product.description}</td>
+                      <td>{product.price || ''}</td>
                       <td>{product.totalPrice || ''}</td>
                       <td>
                         <button
@@ -94,7 +113,9 @@ const Cart = () => {
         )}
         {userField && currentCart.length !== 0 && (
           <ContainerBuy>
-            <button>Finalizar Compra</button>
+            <button onClick={() => handleSendShopping()}>
+              Finalizar Compra
+            </button>
           </ContainerBuy>
         )}
       </ContainerForm>
