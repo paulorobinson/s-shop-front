@@ -1,7 +1,10 @@
 import Location from '../../../components/Location';
+import { useApplication } from '../../../context/Application';
 import { Container, ContainerTable } from './styles';
 
 const Shopping = () => {
+  const { allShoppings } = useApplication();
+
   return (
     <Container>
       <Location location={['Admin', 'Compras']} />
@@ -15,21 +18,13 @@ const Shopping = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Produto 001</td>
-              <td>3</td>
-              <td>R$ 100,00</td>
-            </tr>
-            <tr>
-              <td>Produto 001</td>
-              <td>3</td>
-              <td>R$ 100,00</td>
-            </tr>
-            <tr>
-              <td>Produto 001</td>
-              <td>3</td>
-              <td>R$ 100,00</td>
-            </tr>
+            {allShoppings.map((shopping) => (
+              <tr key={shopping.id}>
+                <td>{shopping.name}</td>
+                <td>{shopping.quantity}</td>
+                <td>{shopping.total}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </ContainerTable>

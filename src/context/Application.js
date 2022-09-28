@@ -10,6 +10,7 @@ const ApplicationContext = createContext();
 const ApplicationProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [currentCart, setCurrentCart] = useState([]);
+  const [allShoppings, setAllShoppings] = useState([]);
 
   const addProduct = async (product) => {
     const alreadyProduct = await api
@@ -85,6 +86,13 @@ const ApplicationProvider = ({ children }) => {
       .catch((error) => console.log(error));
   };
 
+  const getAllShoppings = async () => {
+    await api
+      .get('/shopping')
+      .then(({ data }) => setAllShoppings(data))
+      .catch((error) => console.log(error));
+  };
+
   const persistLocalStorage = (keyName, data) => {
     localStorage.setItem(keyName, JSON.stringify(data));
   };
@@ -117,6 +125,10 @@ const ApplicationProvider = ({ children }) => {
     }
   }, []);
 
+  useEffect(() => {
+    getAllShoppings();
+  }, []);
+
   return (
     <ApplicationContext.Provider
       value={{
@@ -127,6 +139,7 @@ const ApplicationProvider = ({ children }) => {
         addProductFromCurrentCart,
         removeProductFromCurrentCart,
         addShopping,
+        allShoppings,
       }}
     >
       {children}
