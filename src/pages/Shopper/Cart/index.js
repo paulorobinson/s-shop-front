@@ -11,6 +11,8 @@ import {
   ContainerTotal,
 } from './styles';
 
+import { convertCurrency } from '../../../utils/convertCurrency';
+
 const Cart = () => {
   const { currentCart, products, removeProductFromCurrentCart, addShopping } =
     useApplication();
@@ -90,8 +92,8 @@ const Cart = () => {
                       <td>{product.quantity}</td>
                       <td>{product.name}</td>
                       <td>{product.description}</td>
-                      <td>{product.price || ''}</td>
-                      <td>{product.totalPrice || ''}</td>
+                      <td>{convertCurrency(product.price)}</td>
+                      <td>{convertCurrency(product.totalPrice)}</td>
                       <td>
                         <button
                           onClick={() =>
@@ -107,7 +109,7 @@ const Cart = () => {
               </table>
             </ContainerTable>
             <ContainerTotal>
-              Total: R$ {totalPriceAllProducts || ''}
+              Total: {convertCurrency(totalPriceAllProducts)}
             </ContainerTotal>
           </>
         )}

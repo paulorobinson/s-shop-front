@@ -3,6 +3,8 @@ import Location from '../../../components/Location';
 import { useApplication } from '../../../context/Application';
 import { Container, ContainerForm, ContainerTable } from './styles';
 
+import { convertCurrency } from '../../../utils/convertCurrency';
+
 const Products = () => {
   const inputNameRef = useRef(null);
 
@@ -75,7 +77,7 @@ const Products = () => {
                 <tr key={product.id}>
                   <td>{product.name}</td>
                   <td>{product.description}</td>
-                  <td>{product.price}</td>
+                  <td>{convertCurrency(product.price)}</td>
                   <td>
                     <button onClick={() => removeProduct(product.id)}>X</button>
                   </td>
