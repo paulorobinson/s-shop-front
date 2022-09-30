@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# 🛒 S-Shop
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+O O s-shop é um sistema do tipo "carrinho de compras" que possui uma página administrativa simples para cadastro de produtos e listagem de compras.
 
-## Available Scripts
+![Home Screen](https://user-images.githubusercontent.com/61739417/193271986-9eb8cbf8-2199-439b-9d3b-d195120e0727.png)
 
-In the project directory, you can run:
+## 📑 Descrição
 
-### `npm start`
+O desafio consiste em criar uma aplicação front-end onde o usuário possa escolher os produtos e adicionar em uma cesta de compras. A cesta não pode ser limpa ao fazer o reload da página.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Na página da cesta deve ser obrigatório adicionar um nome para prosseguir com a compra e o usuário pode remover o produto.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## ✅ Característica da aplicação
 
-### `npm test`
+- Usuário pode escolher os produtos e adicionar em uma cesta de compra;
+- A cesta não pode ser limpa ao fazer o reload da página (localStorage);
+- Na página da cesta deve ser obrigatório adicionar um nome para prosseguir com a compra;
+- Consumo de API com Axios;
+- Utilizado como API Fake o Json-Server.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 👽 Libs utilizadas:
 
-### `npm run build`
+- React
+- Axios
+- Styled Components
+- uuid
+- Json Server
+- Jest
+- React Testing Library
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## ⌨ Procedimento de instalação
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+# Clone o projeto e acesse a pasta:
+$ git clone https://github.com/paulorobinson/s-shop-front.git
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Acesse a pasta
+$ cd s-shop-front
 
-### `npm run eject`
+# Instale as dependências:
+$ npm i
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Execute o servidor Fake com Json-Server:
+$ npm run json-server
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Endpoints:
+http://localhost:3001/products
+http://localhost:3001/shopping
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Execute o projeto:
+$ npm start
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# A aplicação estará disponível em seu navegador em http://localhost:3000
 
-## Learn More
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🖥 Desktop (screenshot):
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+| Admin > Produtos (http://localhost:3000/admin)                                                                           |
+| ------------------------------------------------------------------------------------------------------------------------ |
+| ![admin_products](https://user-images.githubusercontent.com/61739417/193269093-9001bb0b-9f7c-4f8b-b3ca-b54e051f0326.gif) |
 
-### Code Splitting
+| Home (http://localhost:3000/)                                                                                  |
+| -------------------------------------------------------------------------------------------------------------- |
+| ![home](https://user-images.githubusercontent.com/61739417/193269106-7da2c95b-385f-4aab-9164-b5933ff6941b.gif) |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+| Cesta (http://localhost:3000/cart)                                                                             |
+| -------------------------------------------------------------------------------------------------------------- |
+| ![cart](https://user-images.githubusercontent.com/61739417/193269102-3549a406-daf3-4f47-9866-4f199ffbb5c2.gif) |
 
-### Analyzing the Bundle Size
+| Compras (http://localhost:3000/admin/shopping)                                                                     |
+| ------------------------------------------------------------------------------------------------------------------ |
+| ![shopping](https://user-images.githubusercontent.com/61739417/193269108-e447250f-71cc-48dd-8434-044453960b87.gif) |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 🧔🏻 Autor
 
-### Making a Progressive Web App
+Feito por Paulo Robinson Giaciani. Entre em contato!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+[![assinatura](https://user-images.githubusercontent.com/61739417/193269109-e7f95a83-7578-4e2d-b51b-aeb17bc1fca0.png)](https://www.linkedin.com/in/paulo-robinson-giaciani/)
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<br>
