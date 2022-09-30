@@ -21,6 +21,8 @@ Na página da cesta deve ser obrigatório adicionar um nome para prosseguir com 
 ## 👽 Libs utilizadas:
 
 - React
+- React Hooks
+- Context API
 - Axios
 - Styled Components
 - uuid
