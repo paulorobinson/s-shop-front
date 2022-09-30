@@ -1,6 +1,6 @@
 # 🛒 S-Shop
 
-O O s-shop é um sistema do tipo "carrinho de compras" que possui uma página administrativa simples para cadastro de produtos e listagem de compras.
+O s-shop é um sistema do tipo "carrinho de compras" que possui uma página administrativa simples para cadastro de produtos e listagem de compras.
 
 ![Home Screen](https://user-images.githubusercontent.com/61739417/193271986-9eb8cbf8-2199-439b-9d3b-d195120e0727.png)
 
