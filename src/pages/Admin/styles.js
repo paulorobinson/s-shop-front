@@ -16,7 +16,7 @@ export const Sidebar = styled.aside`
   display: flex;
   flex-direction: column;
 
-  background-color: ${COLORS.YELLOW};
+  background-color: ${COLORS.GRAY};
 
   a {
     display: flex;
@@ -27,7 +27,7 @@ export const Sidebar = styled.aside`
 
     color: ${COLORS.BG};
     padding: 2rem 0;
-    background-color: ${COLORS.YELLOW};
+    background-color: ${COLORS.GRAY};
 
     font-size: 1.4rem;
     transition: filter 0.2s;

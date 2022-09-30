@@ -6,6 +6,7 @@ export const Container = styled.div`
   flex-direction: column;
   padding: 2rem;
   width: 100%;
+  max-width: 80rem;
 `;
 
 export const ContainerForm = styled.div`
@@ -15,54 +16,13 @@ export const ContainerForm = styled.div`
 
     font-size: 1.2rem;
   }
-  button:hover {
-    cursor: pointer;
-  }
 `;
 
 export const ContainerName = styled.div`
   padding-bottom: 2rem;
-
-  input {
-    height: 2rem;
-    width: 100%;
-
-    padding-left: 0.25rem;
-  }
 `;
 
-export const ContainerTable = styled.div`
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  th {
-    font-size: 1.2rem;
-    color: ${COLORS.BG};
-    background-color: ${COLORS.BLUE};
-
-    padding: 1rem;
-    text-align: left;
-  }
-
-  th:last-child {
-    width: 2rem;
-  }
-
-  tr {
-    background-color: ${COLORS.BlUE_20};
-  }
-
-  tr:nth-child(even) {
-    background-color: ${COLORS.BlUE_40};
-  }
-
-  td {
-    font-size: 1rem;
-    padding: 1rem;
-  }
-`;
+export const ContainerTable = styled.div``;
 
 export const ContainerTotal = styled.div`
   padding: 2rem 0;

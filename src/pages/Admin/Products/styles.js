@@ -6,6 +6,7 @@ export const Container = styled.div`
   flex-direction: column;
   padding: 2rem;
   width: 100%;
+  max-width: 80rem;
 `;
 
 export const ContainerForm = styled.form`
@@ -21,60 +22,13 @@ export const ContainerForm = styled.form`
     color: ${COLORS.BLUE};
   }
 
-  input {
-    height: 2rem;
-    width: 100%;
-
-    padding-left: 0.25rem;
-  }
-
   button {
-    height: 2rem;
-    width: 2rem;
-
-    font-size: 1.2rem;
+    height: 2.4rem;
   }
 `;
 
 export const ContainerTable = styled.div`
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  th {
-    font-size: 1.2rem;
-    color: ${COLORS.BG};
-    background-color: ${COLORS.BLUE};
-
-    padding: 1rem;
-    text-align: left;
-  }
-
-  th:last-child {
-    width: 1rem;
-  }
-
-  tr {
-    background-color: ${COLORS.BlUE_20};
-  }
-
-  tr:nth-child(even) {
-    background-color: ${COLORS.BlUE_40};
-  }
-
-  td {
-    font-size: 1rem;
-    padding: 1rem;
-  }
-
   button {
-    height: 2rem;
-    width: 2rem;
-
-    font-size: 1.2rem;
-  }
-  button:hover {
-    cursor: pointer;
+    height: 2.4rem;
   }
 `;

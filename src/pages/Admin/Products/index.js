@@ -58,7 +58,7 @@ const Products = () => {
         </div>
         <div>
           <p>&nbsp;</p>
-          <button type="submit">+</button>
+          <button type="submit">Adicionar</button>
         </div>
       </ContainerForm>
       {products.length !== 0 && (
@@ -69,7 +69,7 @@ const Products = () => {
                 <th>Produto</th>
                 <th>Descrição</th>
                 <th>Preço</th>
-                <th> </th>
+                <th>Remover</th>
               </tr>
             </thead>
             <tbody>
@@ -79,7 +79,9 @@ const Products = () => {
                   <td>{product.description}</td>
                   <td>{convertCurrency(product.price)}</td>
                   <td>
-                    <button onClick={() => removeProduct(product.id)}>X</button>
+                    <button onClick={() => removeProduct(product.id)}>
+                      Remover
+                    </button>
                   </td>
                 </tr>
               ))}

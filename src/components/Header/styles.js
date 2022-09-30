@@ -12,4 +12,6 @@ export const Container = styled.header`
   color: ${COLORS.BG};
   font-size: 2rem;
   font-weight: bold;
+
+  box-shadow: 0 8px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
 `;

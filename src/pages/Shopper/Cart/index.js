@@ -100,7 +100,7 @@ const Cart = () => {
                             removeProductFromCurrentCart(product.productId)
                           }
                         >
-                          X
+                          Excluir
                         </button>
                       </td>
                     </tr>
