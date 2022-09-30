@@ -23,7 +23,11 @@ const ApplicationProvider = ({ children }) => {
       return false;
     }
 
-    const dataProduct = { ...product, id: uuidv4() };
+    const dataProduct = {
+      ...product,
+      id: uuidv4(),
+      price: Number(product.price),
+    };
 
     await api
       .post('/products', dataProduct)
