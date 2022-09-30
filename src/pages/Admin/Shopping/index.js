@@ -32,6 +32,7 @@ const Shopping = () => {
           </table>
         </ContainerTable>
       )}
+      {allShoppings.length === 0 && <h2>Não foi realizado compras!</h2>}
     </Container>
   );
 };

@@ -113,6 +113,8 @@ const Cart = () => {
             </ContainerTotal>
           </>
         )}
+        {currentCart.length === 0 && <h2>Sem produtos na cesta</h2>}
+
         {userField && currentCart.length !== 0 && (
           <ContainerBuy>
             <button onClick={() => handleSendShopping()}>

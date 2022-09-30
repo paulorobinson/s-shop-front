@@ -89,6 +89,7 @@ const Products = () => {
           </table>
         </ContainerTable>
       )}
+      {products.length === 0 && <h2>Não possui itens.</h2>}
     </Container>
   );
 };

@@ -75,52 +75,57 @@ const Home = () => {
             onChange={(e) => setSearch(e.target.value)}
           />
         </ContainerSearch>
-        <ContainerTable>
-          <table>
-            <thead>
-              <tr>
-                <th>Produto</th>
-                <th>Descrição</th>
-                <th>Qtd</th>
-                <th>Adicionar</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredProducts.map((product) => (
-                <tr key={product.id}>
-                  <td>{product.name}</td>
-                  <td>{product.description}</td>
-                  <td>
-                    <input
-                      type="number"
-                      step="1"
-                      placeholder="Qtd"
-                      disabled={alreadyExistsProductFromCurrentCart(product.id)}
-                      onChange={(e) => handleChangedQuantity(e, product.id)}
-                      defaultValue={productsQuantity[product.id]}
-                    />
-                  </td>
-                  <td>
-                    {!alreadyExistsProductFromCurrentCart(product.id) && (
-                      <button
-                        onClick={() => handleAddProductToCart(product.id)}
-                      >
-                        Adicionar
-                      </button>
-                    )}
-                    {alreadyExistsProductFromCurrentCart(product.id) && (
-                      <button
-                        onClick={() => handleRemoveProductToCart(product.id)}
-                      >
-                        Remover
-                      </button>
-                    )}
-                  </td>
+        {filteredProducts.length > 0 && (
+          <ContainerTable>
+            <table>
+              <thead>
+                <tr>
+                  <th>Produto</th>
+                  <th>Descrição</th>
+                  <th>Qtd</th>
+                  <th>Adicionar</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </ContainerTable>
+              </thead>
+              <tbody>
+                {filteredProducts.map((product) => (
+                  <tr key={product.id}>
+                    <td>{product.name}</td>
+                    <td>{product.description}</td>
+                    <td>
+                      <input
+                        type="number"
+                        step="1"
+                        placeholder="Qtd"
+                        disabled={alreadyExistsProductFromCurrentCart(
+                          product.id
+                        )}
+                        onChange={(e) => handleChangedQuantity(e, product.id)}
+                        defaultValue={productsQuantity[product.id]}
+                      />
+                    </td>
+                    <td>
+                      {!alreadyExistsProductFromCurrentCart(product.id) && (
+                        <button
+                          onClick={() => handleAddProductToCart(product.id)}
+                        >
+                          Adicionar
+                        </button>
+                      )}
+                      {alreadyExistsProductFromCurrentCart(product.id) && (
+                        <button
+                          onClick={() => handleRemoveProductToCart(product.id)}
+                        >
+                          Remover
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </ContainerTable>
+        )}
+        {filteredProducts.length === 0 && <h2>Não possui itens.</h2>}
       </ContainerForm>
     </Container>
   );
