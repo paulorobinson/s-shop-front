@@ -54,6 +54,7 @@ const ApplicationProvider = ({ children }) => {
             (product) => productId !== product.id
           );
           setProducts(filteredProducts);
+          removeProductFromCurrentCart(productId);
         }
       })
       .catch((error) => console.log(error));

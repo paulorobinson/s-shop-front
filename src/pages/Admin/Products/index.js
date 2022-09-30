@@ -54,7 +54,7 @@ const Products = () => {
         </div>
         <div>
           <p>Preço</p>
-          <input type="number" name="price" placeholder="R$ 0,00" />
+          <input type="number" step={0.01} name="price" placeholder="R$ 0,00" />
         </div>
         <div>
           <p>&nbsp;</p>
