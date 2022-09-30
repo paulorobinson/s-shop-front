@@ -1,16 +1,4 @@
 {
-  "products": [
-    {
-      "name": "Produto A",
-      "description": "O melhor de todos",
-      "price": 1.99,
-      "id": "a4ac4cb6-cc4c-4d5c-bd6b-54d93fb771e1"
-    },
-    {
-      "name": "Produto B",
-      "description": "Produto B",
-      "price": 14.99,
-      "id": "a441d356-d146-429e-9d8d-4e6c8fceff73"
-    }
-  ]
+  "products": [],
+  "shopping": []
 }
