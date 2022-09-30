@@ -61,8 +61,8 @@ const Products = () => {
           <button type="submit">+</button>
         </div>
       </ContainerForm>
-      <ContainerTable>
-        {products.length !== 0 && (
+      {products.length !== 0 && (
+        <ContainerTable>
           <table>
             <thead>
               <tr>
@@ -85,8 +85,8 @@ const Products = () => {
               ))}
             </tbody>
           </table>
-        )}
-      </ContainerTable>
+        </ContainerTable>
+      )}
     </Container>
   );
 };

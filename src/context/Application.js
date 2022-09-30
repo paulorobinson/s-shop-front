@@ -153,4 +153,4 @@ const useApplication = () => {
   return context;
 };
 
-export { ApplicationProvider, useApplication };
+export { ApplicationProvider, useApplication, ApplicationContext };
